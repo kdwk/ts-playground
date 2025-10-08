@@ -6,28 +6,28 @@ import { Column } from "./column";
 import { Text } from "./text";
 
 export class MultiAnimatedChar extends Widget {
-    i: number = 1;
+  i: number = 1;
 
-    constructor() {
-        super();
-        onKeypress((event) => {
-            switch (event.sequence) {
-                case "+":
-                    this.setState(() => this.i += 1);
-                    break;
-                case "-":
-                    if (this.i > 0) {
-                        this.setState(() => this.i -= 1);
-                    }
-                    break;
-            }
-        });
-    }
+  constructor() {
+    super();
+    onKeypress((event) => {
+      switch (event.sequence) {
+        case "+":
+          this.setState(() => (this.i += 1));
+          break;
+        case "-":
+          if (this.i > 0) {
+            this.setState(() => (this.i -= 1));
+          }
+          break;
+      }
+    });
+  }
 
-    build(): Widget {
-        return new Column([
-            ...range(this.i).map((i) => new AnimatedChar(30)),
-            new Text(this.i.toString()),
-        ]);
-    }
+  build(): Widget {
+    return new Column([
+      ...range(this.i).map((i) => new AnimatedChar(30)),
+      new Text(this.i.toString()),
+    ]);
+  }
 }

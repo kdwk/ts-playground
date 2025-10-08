@@ -1,18 +1,18 @@
-import { Element } from "../widget";
+import { Element } from "./element";
 import { rect, type Frame } from "../frame";
-import { ensureSameLength, range } from "../utils/array_utils";
+import { range } from "../utils/array_utils";
 
 export class RowElement implements Element {
-    children: Element[] = [];
+  children: Element[] = [];
 
-    constructor(children: Element[]) {
-        this.children = children;
-    }
+  constructor(children: Element[]) {
+    this.children = children;
+  }
 
-    draw(): Frame {
-        const childrenFrames = rect(this.children.map(child => child.draw()));
-        return range(childrenFrames[0]?.length ?? 0).map((i) =>
-            childrenFrames.map((frame) => frame[i]!).flat()
-        );
-    }
+  draw(): Frame {
+    const childrenFrames = rect(this.children.map((child) => child.draw()));
+    return range(childrenFrames[0]?.length ?? 0).map((i) =>
+      childrenFrames.map((frame) => frame[i]!).flat(),
+    );
+  }
 }
